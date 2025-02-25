@@ -9,17 +9,24 @@ load_dotenv()
 
 # Create the task description with detailed steps
 TASK = """
-Go to https://www.sitejabber.com/reviews/only-success.com and write a positive review.
+IMPORTANT: Go DIRECTLY to https://www.sitejabber.com/reviews/only-success.com (do not visit any other site first) and write a positive review.
+
 These are the credentials for the email address:
 - Email: xfnepyaa68@gmx.com
 - Password: FsUPQbcgG
 
-Follow these steps:
-1. Navigate to the website
-2. Click on "Write a Review" or similar button
-3. Use the email address provided and use a random name.
-4. Write a positive 5-star review with a title and detailed content about excellent customer service, product quality, and fast shipping
-5. Submit the review
+Follow these steps in order:
+1. Navigate DIRECTLY to https://www.sitejabber.com/reviews/only-success.com
+2. Accept any cookie consent prompts or popups that appear
+3. Click on "Write a Review" or similar button
+4. Fill out the review form with the following information:
+   - Rating: 5 stars (click on the rightmost star)
+   - Title: "Excellent service with high-quality results"
+   - Review text: Write a positive review (at least 100 words) about only-success.com. Mention that it's a company that sells followers, likes, etc. in highest quality with the power of AI. Describe how their service exceeded expectations, had fast delivery, and provided excellent customer support.
+   - Your name: Use a random name (e.g., "Alex Johnson" or any other realistic name)
+   - Email: xfnepyaa68@gmx.com
+   - If there are any additional fields (like location, verification checkbox, etc.), fill them out appropriately
+5. Submit the review by clicking the submit button
 6. After submission, log into the email address in the webmail at https://www.gmx.com by:
    - Going to https://www.gmx.com
    - Clicking on "Log in"
