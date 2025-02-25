@@ -3,9 +3,25 @@ from browser_use import Agent
 import asyncio
 from dotenv import load_dotenv
 import os
+import argparse
 
 # Load environment variables
 load_dotenv()
+
+# Default configuration
+DEFAULT_MODEL = "gpt-4o"
+DEFAULT_TEMPERATURE = 0.7  # Higher values (e.g., 0.8) make output more random, lower (e.g., 0.2) more deterministic
+
+# Parse command line arguments
+def parse_args():
+    parser = argparse.ArgumentParser(description="Run Browser-Use agent to write a Sitejabber review")
+    parser.add_argument("--model", type=str, default=DEFAULT_MODEL, 
+                        help=f"OpenAI model to use (default: {DEFAULT_MODEL})")
+    parser.add_argument("--temperature", type=float, default=DEFAULT_TEMPERATURE, 
+                        help=f"Temperature setting for the model (default: {DEFAULT_TEMPERATURE})")
+    parser.add_argument("--headless", action="store_true", 
+                        help="Run browser in headless mode (default: False)")
+    return parser.parse_args()
 
 # Create the task description with detailed steps
 TASK = """
@@ -15,10 +31,10 @@ These are the credentials for the email address:
 - Email: xfnepyaa68@gmx.com
 - Password: FsUPQbcgG
 
-Follow these steps in order:
+Follow these steps in order(you can modify them if needed):
 1. Navigate DIRECTLY to https://www.sitejabber.com/reviews/only-success.com
 2. Accept any cookie consent prompts or popups that appear
-3. Click on "Write a Review" or similar button
+3. Click on "Write a Review". Dismiss any popups if they appear.
 4. Fill out the review form with the following information:
    - Rating: 5 stars (click on the rightmost star)
    - Title: "Excellent service with high-quality results"
@@ -38,8 +54,16 @@ Follow these steps in order:
 """
 
 async def main():
+    # Parse command line arguments
+    args = parse_args()
+    
+    print(f"Using model: {args.model} with temperature: {args.temperature}")
+    
     # Initialize the LLM (make sure you have OPENAI_API_KEY in your .env file)
-    llm = ChatOpenAI(model="gpt-4o")
+    llm = ChatOpenAI(
+        model=args.model,
+        temperature=args.temperature
+    )
     
     # Create the Browser-Use agent
     agent = Agent(
