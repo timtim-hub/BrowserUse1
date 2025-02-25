@@ -3,25 +3,9 @@ from browser_use import Agent
 import asyncio
 from dotenv import load_dotenv
 import os
-import argparse
 
 # Load environment variables
 load_dotenv()
-
-# Default configuration
-DEFAULT_MODEL = "gpt-4o"
-DEFAULT_TEMPERATURE = 0.7  # Higher values (e.g., 0.8) make output more random, lower (e.g., 0.2) more deterministic
-
-# Parse command line arguments
-def parse_args():
-    parser = argparse.ArgumentParser(description="Run Browser-Use agent to write a Sitejabber review")
-    parser.add_argument("--model", type=str, default=DEFAULT_MODEL, 
-                        help=f"OpenAI model to use (default: {DEFAULT_MODEL})")
-    parser.add_argument("--temperature", type=float, default=DEFAULT_TEMPERATURE, 
-                        help=f"Temperature setting for the model (default: {DEFAULT_TEMPERATURE})")
-    parser.add_argument("--headless", action="store_true", 
-                        help="Run browser in headless mode (default: False)")
-    return parser.parse_args()
 
 # Create the task description with detailed steps
 TASK = """
@@ -54,15 +38,10 @@ Follow these steps in order(you can modify them if needed):
 """
 
 async def main():
-    # Parse command line arguments
-    args = parse_args()
-    
-    print(f"Using model: {args.model} with temperature: {args.temperature}")
-    
     # Initialize the LLM (make sure you have OPENAI_API_KEY in your .env file)
     llm = ChatOpenAI(
-        model=args.model,
-        temperature=args.temperature
+        model="o3-mini",
+        model_kwargs={"reasoning_level": "medium"}
     )
     
     # Create the Browser-Use agent
